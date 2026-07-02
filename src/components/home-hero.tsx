@@ -39,6 +39,7 @@ export function HomeHero() {
   return (
     <section className="relative overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/6 px-6 py-10 shadow-[0_32px_120px_rgba(0,0,0,0.38)] backdrop-blur-2xl sm:px-8 lg:px-10 lg:py-14">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.18),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent_24%)]" />
+      <div className="absolute inset-y-10 left-[54%] hidden w-px bg-gradient-to-b from-transparent via-white/12 to-transparent xl:block" />
       <div className="relative grid gap-10 xl:grid-cols-[1.2fr_0.8fr] xl:items-end">
         <div className="space-y-6">
           <Tag>品飲檔案館</Tag>
@@ -66,9 +67,46 @@ export function HomeHero() {
               看清酒篩選
             </Link>
           </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-[1.4rem] border border-white/10 bg-black/20 p-4">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                Archive
+              </p>
+              <p className="mt-3 font-serif text-2xl text-stone-100">4</p>
+              <p className="mt-2 text-sm leading-7 text-slate-400">四條知識主線同步整理。</p>
+            </div>
+            <div className="rounded-[1.4rem] border border-white/10 bg-black/20 p-4">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                Reading
+              </p>
+              <p className="mt-3 font-serif text-2xl text-stone-100">Dark</p>
+              <p className="mt-2 text-sm leading-7 text-slate-400">偏夜色、偏專注、偏精品雜誌感。</p>
+            </div>
+            <div className="rounded-[1.4rem] border border-white/10 bg-black/20 p-4">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                Focus
+              </p>
+              <p className="mt-3 font-serif text-2xl text-stone-100">MDX</p>
+              <p className="mt-2 text-sm leading-7 text-slate-400">長文、知識卡與酒款筆記共存。</p>
+            </div>
+          </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-4">
+          <div className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5">
+            <p className="text-[11px] uppercase tracking-[0.35em] text-slate-500">
+              Curated Tonight
+            </p>
+            <div className="mt-4 space-y-3">
+              <p className="font-serif text-3xl text-stone-100">從酒款筆記到工具書知識，建立自己的品飲語言。</p>
+              <p className="text-sm leading-7 text-slate-400">
+                不是只記錄喝過什麼，而是把風味、結構、餐搭與釀造背景整理成真正可回看的知識資產。
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
           {heroLinks.map(({ href, title, description, icon: Icon, tone }) => (
             <Link
               key={href}
@@ -87,6 +125,7 @@ export function HomeHero() {
               </div>
             </Link>
           ))}
+          </div>
         </div>
       </div>
     </section>

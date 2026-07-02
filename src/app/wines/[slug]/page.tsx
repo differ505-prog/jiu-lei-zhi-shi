@@ -62,14 +62,14 @@ export default async function WineDetailPage({ params }: WineDetailPageProps) {
       </section>
 
       {note.cover_image ? (
-        <section className="grid gap-6 rounded-[2rem] border border-white/10 bg-white/6 p-5 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur-xl lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/20">
+        <section className="grid gap-6 rounded-[2rem] border border-white/10 bg-white/6 p-5 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur-xl lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+          <div className="mx-auto w-full max-w-[260px] overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/20 shadow-[0_18px_60px_rgba(0,0,0,0.32)] sm:max-w-[300px]">
             <Image
               src={note.cover_image}
               alt={note.cover_image_alt ?? note.title}
               width={900}
               height={1200}
-              className="h-full w-full object-cover"
+              className="h-auto w-full object-cover"
               priority
             />
           </div>
@@ -84,6 +84,14 @@ export default async function WineDetailPage({ params }: WineDetailPageProps) {
               <p className="text-sm leading-7 text-slate-300 sm:text-base">
                 這張酒瓶圖像會作為該篇知識分享的視覺封面，讓讀者在進入文章前就先建立對酒款定位的第一印象。像
                 Rocca Parelli Appassimento 這種南義風乾風格酒款，視覺本身就很適合搭配濃郁、成熟、帶甜香料感的敘事。
+              </p>
+            </div>
+            <div className="rounded-[1.4rem] border border-white/8 bg-black/20 p-4">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                視覺摘要
+              </p>
+              <p className="mt-3 text-sm leading-7 text-slate-300">
+                這裡刻意讓酒瓶尺寸收斂，避免圖片壓過正文閱讀節奏，同時保留足夠的展示感，讓它更像一本精品酒單中的主視覺頁，而不是商品海報。
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
