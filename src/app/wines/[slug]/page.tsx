@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 
 import { ContentMetaGrid } from "@/components/content-meta-grid";
@@ -59,6 +60,40 @@ export default async function WineDetailPage({ params }: WineDetailPageProps) {
           ))}
         </div>
       </section>
+
+      {note.cover_image ? (
+        <section className="grid gap-6 rounded-[2rem] border border-white/10 bg-white/6 p-5 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur-xl lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/20">
+            <Image
+              src={note.cover_image}
+              alt={note.cover_image_alt ?? note.title}
+              width={900}
+              height={1200}
+              className="h-full w-full object-cover"
+              priority
+            />
+          </div>
+          <div className="space-y-4 px-1 lg:px-4">
+            <p className="text-[11px] uppercase tracking-[0.32em] text-rose-200/70">
+              Bottle Focus
+            </p>
+            <div className="space-y-3">
+              <h2 className="font-serif text-3xl text-stone-100 sm:text-4xl">
+                酒款視覺與風格印象
+              </h2>
+              <p className="text-sm leading-7 text-slate-300 sm:text-base">
+                這張酒瓶圖像會作為該篇知識分享的視覺封面，讓讀者在進入文章前就先建立對酒款定位的第一印象。像
+                Rocca Parelli Appassimento 這種南義風乾風格酒款，視覺本身就很適合搭配濃郁、成熟、帶甜香料感的敘事。
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Tag tone="wine">南義風格</Tag>
+              <Tag tone="slate">酒款封面</Tag>
+              <Tag tone="amber">知識分享文</Tag>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <ContentMetaGrid items={metaItems} />
 

@@ -35,6 +35,8 @@ export interface WineNote {
   my_rating: string;
   tasting_date: string;
   tags: string[];
+  cover_image?: string;
+  cover_image_alt?: string;
   content: string;
 }
 
