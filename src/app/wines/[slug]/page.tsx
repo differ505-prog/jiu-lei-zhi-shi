@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 import { ContentMetaGrid } from "@/components/content-meta-grid";
 import { MarkdownArticle } from "@/components/markdown-article";
@@ -60,6 +61,29 @@ export default async function WineDetailPage({ params }: WineDetailPageProps) {
       </section>
 
       <ContentMetaGrid items={metaItems} />
+
+      <section className="rounded-[1.85rem] border border-white/10 bg-white/6 p-6 backdrop-blur-xl">
+        <div className="space-y-4">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+            延伸閱讀
+          </p>
+          <div className="space-y-2">
+            <h2 className="font-serif text-3xl text-stone-100">
+              查看葡萄品種口感指南
+            </h2>
+            <p className="max-w-3xl text-sm leading-7 text-slate-300">
+              這款酒以 {note.grape_variety.join("、")} 為主軸。若你想進一步理解這些葡萄通常帶來的酸度、酒體、香氣方向與搭餐方式，可以直接回到葡萄指南對照。
+            </p>
+          </div>
+          <Link
+            href="/wines/grapes"
+            className="inline-flex items-center rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-2 text-sm text-rose-100 transition duration-200 hover:-translate-y-0.5 hover:bg-rose-500/15"
+          >
+            前往葡萄指南
+          </Link>
+        </div>
+      </section>
+
       <MarkdownArticle content={note.content} />
     </div>
   );

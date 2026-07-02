@@ -67,6 +67,22 @@ export interface MixologyNote {
   content: string;
 }
 
+export interface GrapeVarietyProfile {
+  slug: string;
+  name: string;
+  aliases: string[];
+  category: "紅葡萄" | "白葡萄";
+  body: string;
+  acidity: string;
+  tannin?: string;
+  aromaticIntensity: string;
+  signatureFlavors: string[];
+  texture: string;
+  bestFor: string[];
+  styleNotes: string[];
+  summary: string;
+}
+
 export type ContentKind = "spirits" | "wines" | "sakes" | "mixology";
 
 export interface LatestNotesByCategory {
