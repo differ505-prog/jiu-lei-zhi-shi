@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { BookOpenText, FlaskConical, Grape, Martini } from "lucide-react";
 
@@ -26,6 +29,8 @@ const navigation = [
 ] as const;
 
 export function SiteHeader() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/80 backdrop-blur-2xl">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:px-8">
@@ -50,14 +55,29 @@ export function SiteHeader() {
 
         <nav className="flex gap-2 overflow-x-auto pb-1">
           {navigation.map(({ href, label, icon: Icon }) => (
-            <Link
-              key={href}
-              href={href}
-              className="inline-flex min-w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 transition duration-200 hover:-translate-y-0.5 hover:border-amber-400/20 hover:bg-amber-500/8 hover:text-stone-50"
-            >
-              <Icon className="h-4 w-4 text-amber-300" />
-              {label}
-            </Link>
+            (() => {
+              const active =
+                pathname === href || pathname.startsWith(`${href}/`);
+
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`inline-flex min-w-fit items-center gap-2 rounded-full border px-4 py-2 text-sm transition duration-200 ${
+                    active
+                      ? "border-amber-400/30 bg-amber-500/14 text-stone-50 shadow-[0_8px_30px_rgba(245,158,11,0.08)]"
+                      : "border-white/10 bg-white/5 text-slate-200 hover:-translate-y-0.5 hover:border-amber-400/20 hover:bg-amber-500/8 hover:text-stone-50"
+                  }`}
+                >
+                  <Icon
+                    className={`h-4 w-4 ${
+                      active ? "text-amber-100" : "text-amber-300"
+                    }`}
+                  />
+                  {label}
+                </Link>
+              );
+            })()
           ))}
         </nav>
       </div>
