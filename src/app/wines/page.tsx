@@ -8,6 +8,7 @@ import { ArrowRight } from "lucide-react";
 export default async function WinesPage() {
   const wines = await getAllWines();
   const featuredWine = wines[0];
+  const featuredIsGuide = featuredWine?.type === "Guide";
 
   return (
     <div className="space-y-10 pb-10">
@@ -57,14 +58,16 @@ export default async function WinesPage() {
           <div className="rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:p-8">
             <div className="space-y-4">
               <p className="text-[11px] uppercase tracking-[0.32em] text-rose-200/80">
-                Featured Bottle Story
+                {featuredIsGuide ? "Featured Reading" : "Featured Bottle Story"}
               </p>
               <div className="space-y-3">
                 <h2 className="font-serif text-4xl text-stone-100">
                   {featuredWine.title}
                 </h2>
                 <p className="text-sm leading-7 text-slate-300 sm:text-base">
-                  這篇目前作為葡萄酒區的主打專題，適合讓讀者從單一酒款切入，理解南義風格、風乾葡萄法與餐搭邏輯如何一起成立。
+                  {featuredIsGuide
+                    ? "這篇目前作為葡萄酒區的主打閱讀，適合先建立評分門檻、樣本數與紅白酒評分差異的基本判讀框架，再回頭挑酒。"
+                    : "這篇目前作為葡萄酒區的主打專題，適合讓讀者從單一酒款切入，理解南義風格、風乾葡萄法與餐搭邏輯如何一起成立。"}
                 </p>
               </div>
               <Link

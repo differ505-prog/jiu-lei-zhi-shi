@@ -26,30 +26,44 @@ export default async function WineDetailPage({ params }: WineDetailPageProps) {
     notFound();
   }
 
-  const metaItems = [
-    { label: "類型", value: note.type },
-    { label: "年份", value: note.vintage },
-    { label: "產區", value: note.region },
-    { label: "國家", value: note.country },
-    { label: "葡萄品種", value: note.grape_variety.join("、") },
-    { label: "甜度", value: note.sweetness },
-    { label: "酒體", value: note.body },
-    { label: "個人評分", value: note.my_rating },
-    { label: "品飲日期", value: note.tasting_date },
-  ];
+  const isGuide = note.type === "Guide";
+
+  const metaItems = isGuide
+    ? [
+        { label: "類型", value: "Wine Guide" },
+        { label: "框架", value: note.vintage },
+        { label: "資料來源", value: note.region },
+        { label: "適用範圍", value: note.country },
+        { label: "主題焦點", value: note.grape_variety.join("、") },
+        { label: "使用情境", value: note.sweetness },
+        { label: "閱讀重點", value: note.body },
+        { label: "編輯評分", value: note.my_rating },
+        { label: "收錄日期", value: note.tasting_date },
+      ]
+    : [
+        { label: "類型", value: note.type },
+        { label: "年份", value: note.vintage },
+        { label: "產區", value: note.region },
+        { label: "國家", value: note.country },
+        { label: "葡萄品種", value: note.grape_variety.join("、") },
+        { label: "甜度", value: note.sweetness },
+        { label: "酒體", value: note.body },
+        { label: "個人評分", value: note.my_rating },
+        { label: "品飲日期", value: note.tasting_date },
+      ];
 
   return (
     <div className="space-y-8 pb-10">
       <section className="space-y-5 rounded-[2rem] border border-white/10 bg-white/6 p-6 backdrop-blur-xl sm:p-8">
-        <Tag tone="wine">{note.type}</Tag>
+        <Tag tone="wine">{isGuide ? "Wine Guide" : note.type}</Tag>
         <div className="space-y-3">
           <h1 className="font-serif text-4xl text-stone-100 sm:text-5xl">
             {note.title}
           </h1>
           <p className="max-w-3xl text-sm leading-7 text-slate-300 sm:text-base">
-            {note.region}，{note.country}。年份 {note.vintage}，以{" "}
-            {note.grape_variety.join("、")} 為主軸，風味輪廓為{" "}
-            {note.flavor_profile.join("、")}。
+            {isGuide
+              ? `${note.region} 數據視角，聚焦 ${note.country} 的消費者評分邏輯，主軸涵蓋 ${note.grape_variety.join("、")}，閱讀重點包括 ${note.flavor_profile.join("、")}。`
+              : `${note.region}，${note.country}。年份 ${note.vintage}，以 ${note.grape_variety.join("、")} 為主軸，風味輪廓為 ${note.flavor_profile.join("、")}。`}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -115,7 +129,9 @@ export default async function WineDetailPage({ params }: WineDetailPageProps) {
               查看葡萄品種口感指南
             </h2>
             <p className="max-w-3xl text-sm leading-7 text-slate-300">
-              這款酒以 {note.grape_variety.join("、")} 為主軸。若你想進一步理解這些葡萄通常帶來的酸度、酒體、香氣方向與搭餐方式，可以直接回到葡萄指南對照。
+              {isGuide
+                ? `這篇指南會反覆提到 ${note.grape_variety.join("、")} 等不同風格的評分差異。若你想把分數背後的口感邏輯讀得更紮實，可以直接回到葡萄指南對照。`
+                : `這款酒以 ${note.grape_variety.join("、")} 為主軸。若你想進一步理解這些葡萄通常帶來的酸度、酒體、香氣方向與搭餐方式，可以直接回到葡萄指南對照。`}
             </p>
           </div>
           <Link

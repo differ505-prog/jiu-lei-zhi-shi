@@ -91,16 +91,26 @@ function buildCardContent(props: DrinkCardProps) {
   }
 
   if (props.kind === "wines") {
+    const isGuide = props.note.type === "Guide";
+
     return {
       href: `/wines/${props.note.slug}`,
-      eyebrow: props.note.type,
+      eyebrow: isGuide ? "Wine Guide" : props.note.type,
       title: props.note.title,
-      subline: `${props.note.region}・${props.note.country}`,
+      subline: isGuide
+        ? `${props.note.vintage}・${props.note.region}`
+        : `${props.note.region}・${props.note.country}`,
       meta: [
-        { label: "年份", value: props.note.vintage },
-        { label: "國家", value: props.note.country },
+        isGuide
+          ? { label: "主題", value: props.note.body }
+          : { label: "年份", value: props.note.vintage },
+        isGuide
+          ? { label: "範圍", value: props.note.country }
+          : { label: "國家", value: props.note.country },
       ],
-      tags: props.note.grape_variety.slice(0, 3),
+      tags: isGuide
+        ? props.note.flavor_profile.slice(0, 3)
+        : props.note.grape_variety.slice(0, 3),
     };
   }
 

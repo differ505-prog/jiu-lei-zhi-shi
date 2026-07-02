@@ -4,7 +4,8 @@ export type WineType =
   | "Rose"
   | "Rosé"
   | "Sparkling"
-  | "Champagne";
+  | "Champagne"
+  | "Guide";
 
 export interface SpiritNote {
   slug: string;
