@@ -9,6 +9,23 @@ export default async function WinesPage() {
   const wines = await getAllWines();
   const featuredWine = wines[0];
   const featuredIsGuide = featuredWine?.type === "Guide";
+  const quickStats = [
+    {
+      label: "Archive Notes",
+      value: `${wines.length.toString().padStart(2, "0")}`,
+      description: "酒款與指南並存，閱讀動線更像策展型酒窖。",
+    },
+    {
+      label: "Guide Layer",
+      value: "02",
+      description: "從單瓶酒到方法論，建立更完整的選酒框架。",
+    },
+    {
+      label: "Reading Mood",
+      value: "Night",
+      description: "酒紅、霧面玻璃與資料型版面疊出夜讀感。",
+    },
+  ];
 
   return (
     <div className="space-y-10 pb-10">
@@ -55,21 +72,44 @@ export default async function WinesPage() {
 
       {featuredWine ? (
         <section className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:p-8">
-            <div className="space-y-4">
-              <p className="text-[11px] uppercase tracking-[0.32em] text-rose-200/80">
-                {featuredIsGuide ? "Featured Reading" : "Featured Bottle Story"}
-              </p>
-              <div className="space-y-3">
-                <h2 className="font-serif text-4xl text-stone-100">
-                  {featuredWine.title}
-                </h2>
-                <p className="text-sm leading-7 text-slate-300 sm:text-base">
-                  {featuredIsGuide
-                    ? "這篇目前作為葡萄酒區的主打閱讀，適合先建立評分門檻、樣本數與紅白酒評分差異的基本判讀框架，再回頭挑酒。"
-                    : "這篇目前作為葡萄酒區的主打專題，適合讓讀者從單一酒款切入，理解南義風格、風乾葡萄法與餐搭邏輯如何一起成立。"}
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/6 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:p-8">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(244,63,94,0.16),transparent_36%),radial-gradient(circle_at_bottom_left,rgba(251,191,36,0.08),transparent_28%)]" />
+            <div className="relative space-y-6">
+              <div className="space-y-4">
+                <p className="text-[11px] uppercase tracking-[0.32em] text-rose-200/80">
+                  {featuredIsGuide ? "Featured Reading" : "Featured Bottle Story"}
                 </p>
+                <div className="space-y-3">
+                  <h2 className="font-serif text-4xl text-stone-100">
+                    {featuredWine.title}
+                  </h2>
+                  <p className="text-sm leading-7 text-slate-300 sm:text-base">
+                    {featuredIsGuide
+                      ? "這篇目前作為葡萄酒區的主打閱讀，適合先建立評分門檻、樣本數與紅白酒評分差異的基本判讀框架，再回頭挑酒。"
+                      : "這篇目前作為葡萄酒區的主打專題，適合讓讀者從單一酒款切入，理解南義風格、風乾葡萄法與餐搭邏輯如何一起成立。"}
+                  </p>
+                </div>
               </div>
+
+              <div className="grid gap-3 sm:grid-cols-3">
+                {quickStats.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-[1.4rem] border border-white/8 bg-black/20 p-4"
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-3 font-serif text-3xl text-stone-100">
+                      {item.value}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-slate-400">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
               <Link
                 href={`/wines/${featuredWine.slug}`}
                 className="inline-flex items-center gap-2 rounded-full border border-rose-400/20 bg-rose-500/10 px-4 py-2 text-sm text-rose-100 transition duration-200 hover:-translate-y-0.5 hover:bg-rose-500/15"
@@ -81,15 +121,29 @@ export default async function WinesPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <div className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5">
-              <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
-                Cellar Lens
-              </p>
-              <p className="mt-3 font-serif text-2xl text-stone-100">從酒款到葡萄</p>
-              <p className="mt-2 text-sm leading-7 text-slate-400">
-                不只記錄單瓶酒，也把葡萄品種與風格辨識納入同一條閱讀動線。
-              </p>
+            <div className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20">
+              <div className="border-b border-white/8 bg-white/4 px-5 py-3">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                  Selection Snapshot
+                </p>
+              </div>
+              <div className="divide-y divide-white/8">
+                {[
+                  ["紅酒", "3.8+ / 500 評"],
+                  ["白酒", "3.6+ / 300 評"],
+                  ["香檳", "4.0+ / 1000 評"],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="flex items-center justify-between px-5 py-4"
+                  >
+                    <p className="text-sm text-slate-300">{label}</p>
+                    <p className="font-serif text-xl text-stone-100">{value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+
             <div className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5">
               <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
                 Reading Tone

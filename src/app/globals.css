@@ -25,7 +25,11 @@ html {
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top, rgba(148, 24, 58, 0.18), transparent 26%),
+    radial-gradient(circle at 85% 12%, rgba(245, 158, 11, 0.1), transparent 22%),
+    radial-gradient(circle at 18% 100%, rgba(255, 255, 255, 0.05), transparent 18%),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-noto-sans-tc), sans-serif;
   text-rendering: optimizeLegibility;
