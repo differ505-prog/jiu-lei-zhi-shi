@@ -23,6 +23,9 @@ export function GrapeProfileCard({ profile }: GrapeProfileCardProps) {
           </div>
           <div className="space-y-2">
             <h3 className="font-serif text-3xl text-stone-100">{profile.name}</h3>
+            <p className="text-sm leading-7 text-rose-100/80">
+              常見中文／別名：{profile.aliases.join("、")}
+            </p>
             <p className="text-sm leading-7 text-slate-300">{profile.summary}</p>
           </div>
         </div>

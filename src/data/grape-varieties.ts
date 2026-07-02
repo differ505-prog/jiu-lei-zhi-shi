@@ -52,7 +52,7 @@ export const grapeVarieties: GrapeVarietyProfile[] = [
   {
     slug: "syrah-shiraz",
     name: "Syrah / Shiraz",
-    aliases: ["希哈", "希拉", "Shiraz"],
+    aliases: ["希哈", "希拉", "設拉子"],
     category: "紅葡萄",
     body: "Full",
     acidity: "Medium",
@@ -80,6 +80,22 @@ export const grapeVarieties: GrapeVarietyProfile[] = [
     styleNotes: ["非常適合餐桌", "不是甜美果香型，而是偏結構與鹹鮮感"],
     summary:
       "Sangiovese 的魅力是酸度與餐搭能力，喝起來常比想像中更俐落、更有食慾感。",
+  },
+  {
+    slug: "tempranillo",
+    name: "Tempranillo",
+    aliases: ["田帕尼優", "丹魄", "添普蘭尼洛"],
+    category: "紅葡萄",
+    body: "Medium to Full",
+    acidity: "Medium to Medium+",
+    tannin: "Medium",
+    aromaticIntensity: "Medium+",
+    signatureFlavors: ["紅櫻桃", "李子", "皮革", "香草", "菸草"],
+    texture: "酒體中等偏厚，單寧通常比 Cabernet 柔和，但仍保有成熟紅果與木質香料的結構感。",
+    bestFor: ["伊比利火腿", "烤羊排", "燉牛肉", "西班牙燉飯"],
+    styleNotes: ["年輕版本偏紅果與鮮活酸度", "經橡木桶熟成後常出現香草、椰香與皮革調"],
+    summary:
+      "Tempranillo 很適合拿來理解西班牙紅酒的骨架：它不像 Pinot Noir 那麼輕，也不像 Cabernet 那麼硬，重點在成熟果味、香料與木桶平衡。",
   },
   {
     slug: "nebbiolo",
@@ -115,7 +131,7 @@ export const grapeVarieties: GrapeVarietyProfile[] = [
   {
     slug: "sauvignon-blanc",
     name: "Sauvignon Blanc",
-    aliases: ["白蘇維濃"],
+    aliases: ["白蘇維濃", "長相思"],
     category: "白葡萄",
     body: "Light",
     acidity: "High",
@@ -145,7 +161,7 @@ export const grapeVarieties: GrapeVarietyProfile[] = [
   {
     slug: "chenin-blanc",
     name: "Chenin Blanc",
-    aliases: ["白詩南"],
+    aliases: ["白詩南", "白梢楠"],
     category: "白葡萄",
     body: "Light to Medium",
     acidity: "High",
